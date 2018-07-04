@@ -6,7 +6,8 @@ public class npc_car : MonoBehaviour {
 
 
 	public float speed = 1.1f;
-
+	public AudioClip CarAudio;
+	public GameObject CarEffect;
 	// Use this for initialization
 	void Start () {
 		
@@ -20,6 +21,9 @@ public class npc_car : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 
 		print ("Trigger Enter");
+		
+		GetComponent<AudioSource> ().PlayOneShot (CarAudio);
+		CarEffect.SetActive (true);
 
 
 		transform.Translate (Vector3.forward * speed,Space.World);
