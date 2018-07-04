@@ -12,6 +12,6 @@ public class Objects : MonoBehaviour {
             health.TakeDamage(10);
         }
 
-        Destroy(gameObject);
+       
     }
 }
