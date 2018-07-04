@@ -1,27 +1,33 @@
-﻿using System;
-
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
+public class Health : MonoBehaviour
+{
 
-public class Health : MonoBehaviour {
+    public float health = 100;
+    public Image healthBar;
+    public int damage;
 
-    public const int maxHealth = 100;
-    public int currentHealth = maxHealth;
-    public RectTransform healthBar;
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Collider")
+        {
+            TakeDamage(damage);
+            Debug.Log("Taking Damage");
+        }
+    }
 
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
-        if (currentHealth == 0)
-        {
-            currentHealth = 0;
+        health -= amount;
+
+        healthBar.fillAmount = health / 100f;
+        
+        if (health <= 0){
+            health = 0;
             Debug.Log("Dead!");
         }
-
-        healthBar.sizeDelta = new Vector2(currentHealth, healthBar.sizeDelta.y);
     }
 }
