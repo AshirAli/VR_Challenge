@@ -24,7 +24,7 @@ public class Timer : MonoBehaviour {
 			yield return new WaitForSeconds (1);
 			timeRemaining--;
 
-			if (timeRemaining < 0) {
+			if (timeRemaining <= 0) {
 
 				Debug.Log ("Timer Stopped.");
 				StopCoroutine (StartTimer ());
