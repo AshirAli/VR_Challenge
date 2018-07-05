@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour {
 
 	Text timerText;
-	public int timeRemaining=10;
+	public static int timeRemaining=10;
 
 	void Start () {
 
