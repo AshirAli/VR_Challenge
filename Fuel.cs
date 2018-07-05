@@ -8,7 +8,5 @@ public class Fuel : MonoBehaviour {
 
 		Destroy (gameObject);
 	}
-
-
-
 }
+//Just Destroying fuel on collision not respawning after some time.
