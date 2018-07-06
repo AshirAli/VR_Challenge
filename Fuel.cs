@@ -1,14 +1,25 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fuel : MonoBehaviour {
+public class Fuel : MonoBehaviour
+{
+    public GameObject timerText;
+    private TimerScript timerScript;
+    public GameObject fuel;
 
-	void OnTriggerEnter(Collider col){
+    void Awake()
+    {
+        timerScript = timerText.GetComponent<TimerScript>();
+    }
 
-		Destroy (gameObject);
-		Timer.timeRemaining += 5;
-
-	}
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.name.StartsWith("Collider"))
+        {
+            fuel.SetActive(false);
+            timerScript.timeRemaining += 30;
+        }
+    }
 }
 //Just Destroying fuel on collision not respawning after some time.
