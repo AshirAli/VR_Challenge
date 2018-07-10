@@ -10,10 +10,6 @@ public class PlayerController : MonoBehaviour {
 	public Text countText;
 	public Text winText;
 	public GameObject Pick;
-	public Transform rBorder;
-	public Transform lBorder;
-	public Transform tBorder;
-	public Transform bBorder;
 
 	private Rigidbody rb;
 	private int count;
@@ -24,7 +20,6 @@ public class PlayerController : MonoBehaviour {
 		count = 0;
 		SetCountText ();
 		winText.text = "";
-		SpawnPick ();
 	}
 
 	void FixedUpdate ()
@@ -37,29 +32,27 @@ public class PlayerController : MonoBehaviour {
 		rb.AddForce (movement * speed);
 	}
 
-	public void SpawnCoin()
-	{
-		int x = (int)Random.Range (lBorder.position.x, rBorder.position.x);
-		int y = (int)Random.Range (bBorder.position.y, tBorder.position.y);
-		Instantiate (Pick,new Vector2 (x,y),Quaternion.identity);
-	}
 
-	void OnTriggerEnter(Collider other) 
+	void OnTriggerEnter(Collider other) // Use this function in player controll to destroy coin
 	{
-		/*if (other.gameObject.CompareTag ( "Pick Up"))  // use this for simple coin collection
+		if (other.gameObject.CompareTag ("Pick Up")) 
 		{
-			other.gameObject.SetActive (false);
-
-			count = count + 1;
+			{
+				other.gameObject.SetActive (false);
+			}
+			count = count + 1; //skip this 2 lines since there is seperate script for coin collection
 			SetCountText ();
-		}*/
-		if (other.name.StartsWith ("Pick")) {
-			Destroy (other.gameObject);
-			SpawnPick ();
 		}
+		else
+		{
+			{
+				other.gameObject.SetActive (false);
+			}
+		}
+
 	}
 
-	void SetCountText ()
+	void  SetCountText ()
 	{
 		countText.text = "Count: " + count.ToString ();
 		if (count >= 8)
