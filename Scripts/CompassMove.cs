@@ -9,12 +9,6 @@ public class CompassMove : MonoBehaviour {
     public Transform Player;
     public Text CompassDirectionText;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
 	void Update () {
 
         CompassImage.uvRect = new Rect(Player.localEulerAngles.y / 360, 0, 1, 1);
